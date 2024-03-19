@@ -1,0 +1,12 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set height to full viewport height */
+
+  margin: 20%;
+}
+
+.login-form {
+  width: 300px; /* Set form width */
+}
