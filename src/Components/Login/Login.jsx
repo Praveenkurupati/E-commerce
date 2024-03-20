@@ -18,6 +18,14 @@ const LoginForm = () => {
     }));
   };
 
+  const handleLoginSuccess = async (token, userId) => {
+    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("userId", userId);
+    console.log("Login successful");
+    navigate("/");
+    window.location.reload(); // Reload the window after successful login
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,10 +38,7 @@ const LoginForm = () => {
       });
       if (response.ok) {
         const data = await response.json(); // Parse response JSON
-        // Save token to sessionStorage
-        sessionStorage.setItem("token", data.token);
-        console.log("Login successful");
-        navigate("/");
+        handleLoginSuccess(data.token, data.userId);
       } else {
         console.error("Login failed");
       }
